@@ -24,5 +24,4 @@ yarn-error.log*
 
 .idea
 
-src/components/__generated__s
 /src/components/__generated__/
