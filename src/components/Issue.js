@@ -46,11 +46,13 @@ function Issue() {
             environment={RelayEnvironment}
             query={IssueQuery}
             variables={{}}
-            render={({error, props}) => {
+            render={({error, props, retry}) => {
                 if (props) {
                     const node = props.repository.issues.edges[0].node
                     const body = props.repository.issues.edges[0].node.body
                     const url = props.repository.issues.edges[0].node.url
+                    console.log('retry',retry)
+                    window.retry = retry
                     return (
                         <div>
                             <p>{props.repository.name}</p>
@@ -67,7 +69,7 @@ function Issue() {
                                     })
                                 }
                             </div>
-                            <IssueCommentCommit/>
+                            <IssueCommentCommit retry={retry}/>
                         </div>
                     )
                 } else if (error) {

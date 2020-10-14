@@ -22,7 +22,7 @@ const mutation = graphql`
     }
 `
 
-function addComment(environment, body) {
+function addComment(environment, body, retry) {
     const variables = {
         body,
     };
@@ -34,21 +34,23 @@ function addComment(environment, body) {
             variables,
             onCompleted: (response, errors) => {
                 console.log('Response received from server.')
+                retry()
             },
             onError: err => console.error(err),
         },
     );
 }
 
-function IssueCommentCommit() {
+
+function IssueCommentCommit({retry}) {
     const inputEl = useRef(null)
     const onButtonClick = () => {
         const value = inputEl.current.value
-        if(!value || value.trim()===''){
+        if (!value || value.trim() === '') {
             alert("请输入要提交的comment")
             return
         }
-        addComment(RelayEnvironment,value)
+        addComment(RelayEnvironment, value, retry)
     }
     return (
         <div>
