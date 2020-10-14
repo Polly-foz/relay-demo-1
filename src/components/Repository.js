@@ -5,7 +5,10 @@ import {QueryRenderer} from 'react-relay';
 import RepositoryCommits from "./RepositoryCommits";
 // Define a query
 const RepositoryNameQuery = graphql`
-    query RepositoryNameQuery($owner:String!, $name:String!) {
+    query RepositoryNameQuery(
+        $owner:String!, 
+        $name:String!,
+    ) {
         repository(owner: $owner name: $name) {
             name
             owner{
@@ -31,11 +34,12 @@ function Repository(props) {
             render={({error, props}) => {
                 if (props) {
                     const {repository} = props
-                    const {name,owner,description,homepageUrl} = repository
+                    const {name,owner,description,homepageUrl,repositoryID} = repository
                     return (
                         <div className="Repository">
                             <header className="Repository">
                                 <h1>Repository</h1>
+                                <p>id: {repositoryID}</p>
                                 <p>repository: <a href={homepageUrl}>{name}</a></p>
                                 <p>owner: <a href={owner.url}>{owner.login}</a></p>
                                 <p>description: {description}</p>
