@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import Repository from "./components/Repository";
 import Profile from "./components/Profile";
+import Issue from "./components/Issue";
 function App(props) {
     return (
         <Router>
@@ -22,6 +23,9 @@ function App(props) {
                             <Link to="/repository">Repository</Link>
                         </li>
                         <li>
+                            <Link to="/issue">Issue</Link>
+                        </li>
+                        <li>
                             <Link to="/profile">Profile</Link>
                         </li>
                     </ul>
@@ -32,6 +36,9 @@ function App(props) {
                 <Switch>
                     <Route path="/repository">
                         <Repository/>
+                    </Route>
+                    <Route path="/issue">
+                        <Issue/>
                     </Route>
                     <Route path="/profile">
                         <Profile/>

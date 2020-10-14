@@ -22,7 +22,7 @@ const RepositoryNameQuery = graphql`
     }
 `;
 
-function Repository(props) {
+function Repository() {
     return (
         <QueryRenderer
             environment={RelayEnvironment}
